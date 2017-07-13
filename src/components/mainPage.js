@@ -13,6 +13,7 @@ class mainPage extends React.Component {
             <Switch>
               <Route exact path='/' component={require('./homePage')} />
               <Route exact path='/authors' component={require('./authors/authorPage')} />
+              <Route exact path='/addAuthor' component={require('./authors/manageAuthorPage')} />
               <Route path='/about' component={require('./about/aboutPage')} />
               <Redirect from='/about-us' to='about' />
               <Route path='*' component={require('./NotFoundPage')} />

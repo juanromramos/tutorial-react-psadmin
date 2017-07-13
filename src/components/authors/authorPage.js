@@ -1,6 +1,7 @@
 "use strict";
 
 var React = require('react');
+var Link = require('react-router-dom').Link;
 var AuthorApi = require('../../api/authorApi');
 var AuthorList = require('./authorList');
 
@@ -20,6 +21,8 @@ class AuthorPage extends React.Component {
         return(
             <div>
                 <h1>Authors</h1>
+                <Link to='/addAuthor' className='btn btn-default'>Add Author</Link>
+                <hr />
                 <AuthorList authors={this.state.authors} />
             </div>
         );
