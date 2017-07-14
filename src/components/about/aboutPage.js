@@ -5,8 +5,17 @@ var withRouter = require('react-router').withRouter;
 
 class About extends React.Component {
     componentWillMount() {
-        // if (!confirm('Are you sure you want to read a page\'s this boring?')) {
+        // Gestión del historial de navegación!
+        // if (!confirm('Are you sure you want to read a page that\'s this boring?')) {
         //     this.props.history.goBack();
+        // }
+    }
+
+    componentWillUnmount() {
+        // Gestión del historial de navegación!
+        // if (!confirm('Are you sure you want to leave a page that\'s this exciting?')) {
+        //     //this.props.history.goBack();
+        //     return;
         // }
     }
 
