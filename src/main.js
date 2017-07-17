@@ -8,13 +8,13 @@ var BrowserRouter = require('react-router-dom').BrowserRouter;
 var InitializeActions = require('./actions/initializeActions');
 var App = require('./components/app');
 
-InitializeActions.initApp();
-
 ReactDOM.render((
   <BrowserRouter>
     <App />
   </BrowserRouter>
 ), document.getElementById('app'))
+
+InitializeActions.initApp();
 
 // // Custom routing render function
 // function render() {

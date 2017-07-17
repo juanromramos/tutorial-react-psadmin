@@ -2,7 +2,7 @@
 
 var keyMirror = require('fbjs/lib/keyMirror');
 
-module.expors = keyMirror({
+module.exports = keyMirror({
     INITIALIZE: null,
     CREATE_AUTHOR: null
 });

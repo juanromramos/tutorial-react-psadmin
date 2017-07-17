@@ -6,7 +6,6 @@ var ActionTypes = require('../constants/actionTypes');
 
 var InitiliazeActions = {
     initApp: function(){
-        console.log("en initApp");
         Dispatcher.dispatch({
             actionType: ActionTypes.INITIALIZE,
             initialData: {
