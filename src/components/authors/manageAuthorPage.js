@@ -1,7 +1,6 @@
 "use strict";
 
 var React = require('react');
-var withRouter = require('react-router').withRouter;
 var AuthorForm = require('./authorForm');
 //var AuthorApi = require('../../api/authorApi');  //Removed when 'flux' gets into action
 var AuthorActions = require('../../actions/authorActions');
@@ -68,7 +67,12 @@ class ManageAuthorPage extends React.Component {
           if (!super_this.authorFormIsValid()) {
               return;
           }
-          AuthorActions.createAuthor(super_this.state.author);
+
+          if (super_this.state.author.id) {
+              AuthorActions.updateAuthor(super_this.state.author);
+          } else {
+              AuthorActions.createAuthor(super_this.state.author);
+          }
           super_this.setState({dirty: false});
           toastr.success("Author saved.");
           super_this.props.history.go(-1);
@@ -85,4 +89,4 @@ class ManageAuthorPage extends React.Component {
     }
 }
 
-module.exports = withRouter(ManageAuthorPage);
+module.exports = ManageAuthorPage;

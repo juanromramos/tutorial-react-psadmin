@@ -3,15 +3,23 @@
 var React = require('react');
 var PropTypes = require('prop-types');
 var Link = require('react-router-dom').Link;
+var AuthorActions = require('../../actions/authorActions');
+var toastr = require('toastr');
 
 //import PropTypes from 'prop-types'; // Salta error en Reactify?
 
 class AuthorList extends React.Component {
-      render() {
+    deleteAuthor(id, event) {
+        event.preventDefault();
+        AuthorActions.deleteAuthor(id);
+        toastr.success('Author Deleted');
+    }
+
+    render() {
         var createAuthorRow = function(author) {
             return (
               <tr key={author.id}>
-                  {/* <td><a href={"/authors/" + author.id}>{author.id}</a></td> */}
+                  <td><a href='#' onClick={this.deleteAuthor.bind(this, author.id)}>Delete</a></td>
                   <td><Link to={'/author/' + author.id}>{author.id}</Link></td>
                   <td>{author.firstName} {author.lastName}</td>
               </tr>
@@ -23,6 +31,7 @@ class AuthorList extends React.Component {
                 <table className='table table-responsive table-bordered table-striped table-condensed table-hover'>
                     <thead>
                         <tr>
+                            <th></th>
                             <th>ID</th>
                             <th>Name</th>
                         </tr>

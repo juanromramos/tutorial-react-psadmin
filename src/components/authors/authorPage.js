@@ -6,13 +6,28 @@ var Link = require('react-router-dom').Link;
 var AuthorActions = require('../../actions/authorActions');
 var AuthorStore = require('../../stores/authorStore');
 var AuthorList = require('./authorList');
+var super_this;
 
 class AuthorPage extends React.Component {
     constructor() {
         super();
+        super_this = this;
         this.state = {
             authors: AuthorStore.getAllAuthors()
         }
+    }
+
+    componentWillMount() {
+        AuthorStore.addChangeListener(this._onChange);
+    }
+
+    componentWillUnmount() {
+        AuthorStore.removeChangeListener(this._onChange);
+    }
+
+    _onChange() {
+        console.log(super_this);
+        super_this.setState({ authors: AuthorStore.getAllAuthors() });
     }
 
     render() {
