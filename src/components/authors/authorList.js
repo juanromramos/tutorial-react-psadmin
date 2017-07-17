@@ -12,7 +12,7 @@ class AuthorList extends React.Component {
             return (
               <tr key={author.id}>
                   {/* <td><a href={"/authors/" + author.id}>{author.id}</a></td> */}
-                  <td><Link to={'/authors/' + author.id}>{author.id}</Link></td>
+                  <td><Link to={'/author/' + author.id}>{author.id}</Link></td>
                   <td>{author.firstName} {author.lastName}</td>
               </tr>
             );

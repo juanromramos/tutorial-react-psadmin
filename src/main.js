@@ -3,14 +3,17 @@
 $ = jQuery = require('jquery');
 var React = require('react');
 var ReactDOM = require('react-dom');
-//var BrowserRouter = require('react-router-dom').BrowserRouter;
-var HashRouter = require('react-router-dom').HashRouter;
+var BrowserRouter = require('react-router-dom').BrowserRouter;
+//var HashRouter = require('react-router-dom').HashRouter;
+var InitializeActions = require('./actions/initializeActions');
 var App = require('./components/app');
 
+InitializeActions.initApp();
+
 ReactDOM.render((
-  <HashRouter>
+  <BrowserRouter>
     <App />
-  </HashRouter>
+  </BrowserRouter>
 ), document.getElementById('app'))
 
 // // Custom routing render function

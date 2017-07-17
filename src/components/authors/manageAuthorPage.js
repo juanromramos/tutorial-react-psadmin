@@ -3,7 +3,10 @@
 var React = require('react');
 var withRouter = require('react-router').withRouter;
 var AuthorForm = require('./authorForm');
-var AuthorApi = require('../../api/authorApi');
+//var AuthorApi = require('../../api/authorApi');  //Removed when 'flux' gets into action
+var AuthorActions = require('../../actions/authorActions');
+var AuthorStore = require('../../stores/authorStore');
+
 var toastr = require('toastr');
 var super_this;
 
@@ -19,7 +22,9 @@ class ManageAuthorPage extends React.Component {
       }
 
       componentWillMount() {
-          console.log(this.props.history);
+          var authorId = this.props.match.params.id;
+          if (authorId)
+              this.setState({author: AuthorStore.getAuthorById(authorId)});
       }
 
       componentWillUnmount() {
@@ -63,8 +68,8 @@ class ManageAuthorPage extends React.Component {
           if (!super_this.authorFormIsValid()) {
               return;
           }
-
-          AuthorApi.saveAuthor(super_this.state.author);
+          AuthorActions.createAuthor(super_this.state.author);
+          super_this.setState({dirty: false});
           toastr.success("Author saved.");
           super_this.props.history.go(-1);
       }
