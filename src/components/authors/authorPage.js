@@ -26,7 +26,6 @@ class AuthorPage extends React.Component {
     }
 
     _onChange() {
-        console.log(super_this);
         super_this.setState({ authors: AuthorStore.getAllAuthors() });
     }
 

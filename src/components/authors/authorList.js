@@ -28,7 +28,7 @@ class AuthorList extends React.Component {
 
         return(
             <div>
-                <table className='table table-responsive table-bordered table-striped table-condensed table-hover'>
+                <table className='table table-condensed'>
                     <thead>
                         <tr>
                             <th></th>
