@@ -2,7 +2,7 @@
 
 var React = require('react');
 var Link = require('react-router-dom').Link;
-var CourseActions = require('../../actions/courseActions');
+// var CourseActions = require('../../actions/courseActions');
 var CourseStore = require('../../stores/courseStore');
 var CourseList = require('./courseList');
 var super_this;
@@ -12,7 +12,7 @@ class CoursePage extends React.Component {
         super();
         super_this = this;
         this.state = {
-            courses: CourseStore.getAllCourses()
+            courses: CourseStore.getAllCourses(),
         }
     }
 
@@ -34,7 +34,7 @@ class CoursePage extends React.Component {
                 <h1>Courses</h1>
                 <Link to='/course' className='btn btn-default'>Add Course</Link>
                 <hr />
-                <CourseList courses={this.state.courses} />
+                <CourseList courses={this.state.courses}/>
             </div>
         );
     }

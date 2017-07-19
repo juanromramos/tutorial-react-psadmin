@@ -15,16 +15,17 @@ class CourseList extends React.Component {
 
     render() {
         var createCourseRow = function(course) {
-            return (
-              <tr key={course.id}>
-                  <td><a target='_blank' href={course.watchHref}>Watch</a></td>
-                  <td><a href='#' onClick={this.deleteCourse.bind(this, course.id)}>Delete</a></td>
-                  <td>{course.title}</td>
-                  <td>{course.author.name}</td>
-                  <td>{course.category}</td>
-                  <td>{course.length}</td>
-              </tr>
-            );
+          var id = Math.floor((Math.random() * 100000) + 1);
+          return (
+            <tr key={course.id + '-' + id}>
+                <td><a target='_blank' href={course.watchHref}>Watch</a></td>
+                <td><a href='#' onClick={this.deleteCourse.bind(this, course.id)}>Delete</a></td>
+                <td>{course.title}</td>
+                <td>{course.author.name}</td>
+                <td>{course.category}</td>
+                <td>{course.length}</td>
+            </tr>
+          );
         };
 
         return(
