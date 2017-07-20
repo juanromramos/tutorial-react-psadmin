@@ -3,15 +3,16 @@
 $ = jQuery = require('jquery');
 var React = require('react');
 var ReactDOM = require('react-dom');
-var BrowserRouter = require('react-router-dom').BrowserRouter;
-//var HashRouter = require('react-router-dom').HashRouter;
+//var Router = require('react-router-dom').Router;
+var Router = require('react-router-dom').BrowserRouter;
+//var Router = require('react-router-dom').HashRouter;
 var InitializeActions = require('./actions/initializeActions');
 var App = require('./components/app');
 
 ReactDOM.render((
-  <BrowserRouter>
+  <Router>
     <App />
-  </BrowserRouter>
+  </Router>
 ), document.getElementById('app'))
 
 InitializeActions.initApp();

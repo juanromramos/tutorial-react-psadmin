@@ -2,6 +2,7 @@
 
 var React = require('react');
 var Input = require('../common/textInput');
+var Prompt = require('react-router-dom').Prompt;
 var Select = require('../common/selectInput');
 var PropTypes = require('prop-types');
 
@@ -55,7 +56,10 @@ class CourseForm extends React.Component {
                   onChange={this.props.onChange}
                   error={this.props.errors.watchHref}
                 />
-
+                <Prompt
+                  when={this.props.dirty}
+                  message={location => (`Are you sure you want to go to ${location.pathname}`)}
+                />
                 <input type='submit' value='Save' className='btn btn-default' onClick={this.props.onSave} />
             </form>
         );

@@ -1,11 +1,10 @@
 "use strict";
 
 var React = require('react');
-var Header = require('./common/header');
+// var Header = require('./common/header'); //Old header with no bootstrap navbar-collapse
 var NewHeader = require('./common/new-header');
 var Route = require('react-router-dom').Route;
 var Switch = require('react-router-dom').Switch;
-
 var Redirect = require('react-router-dom').Redirect;
 
 class App extends React.Component {
@@ -25,18 +24,18 @@ class App extends React.Component {
                     <Switch>
                         <Route exact path='/' component={require('./homePage')} />
 
-                        <Route exact path='/authors' component={require('./authors/authorPage')} />
-                        <Route exact path='/author' component={require('./authors/manageAuthorPage')} />
-                        <Route exact path='/author/:id' component={require('./authors/manageAuthorPage')} />
+                        <Route path='/authors' component={require('./authors/authorPage')} />
+                        <Route path='/author' component={require('./authors/manageAuthorPage')} />
+                        <Route path='/author/:id' component={require('./authors/manageAuthorPage')} />
 
-                        <Route exact path='/courses' component={require('./courses/coursePage')} />
-                        <Route exact path='/course' component={require('./courses/manageCoursePage')} />
-                        <Route exact path='/course/:id' component={require('./courses/manageCoursePage')} />
+                        <Route path='/courses' component={require('./courses/coursePage')} />
+                        <Route path='/course' component={require('./courses/manageCoursePage')} />
+                        <Route path='/course/:id' component={require('./courses/manageCoursePage')} />
 
                         <Route path='/about' component={require('./about/aboutPage')} />
                         <Redirect from='/about-us' to='about' />
 
-                        <Route path='*' component={require('./NotFoundPage')} />
+                        <Route component={require('./NotFoundPage')} />
                   </Switch>
                 </div>
             </div>

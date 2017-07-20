@@ -3,7 +3,6 @@
 var React = require('react');
 var Link = require('react-router-dom').Link;
 //var AuthorApi = require('../../api/authorApi');  //Removed when 'flux' gets into action
-// var AuthorActions = require('../../actions/authorActions');
 var AuthorStore = require('../../stores/authorStore');
 var AuthorList = require('./authorList');
 var super_this;

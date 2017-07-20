@@ -2,7 +2,6 @@
 
 var React = require('react');
 var AuthorForm = require('./authorForm');
-//var AuthorApi = require('../../api/authorApi');  //Removed when 'flux' gets into action
 var AuthorActions = require('../../actions/authorActions');
 var AuthorStore = require('../../stores/authorStore');
 
@@ -27,13 +26,9 @@ class ManageAuthorPage extends React.Component {
       }
 
       componentWillUnmount() {
-          // Gestión del historial de navegación!
-          // this.props.router.setRouteLeaveHook(this.props.route, this.routerWillLeave);
-          // if (this.state.dirty && !confirm('Leave without saving?')) {
-          //   alert('not leaving');
-          //   this.props.history.block('probando');
-          // }
-          //alert('leaving');
+          // Prevenir salir de una página con formulario
+          // Se realiza con el componente Prompt de
+          // react-router-dom en el componente Form
         }
 
       setAuthorState(event) {
@@ -84,7 +79,9 @@ class ManageAuthorPage extends React.Component {
                 author={this.state.author}
                 onChange={this.setAuthorState}
                 onSave={this.saveAuthor}
-                errors={this.state.errors} />
+                errors={this.state.errors}
+                dirty={this.state.dirty}
+              />
         );
     }
 }

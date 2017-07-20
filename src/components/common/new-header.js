@@ -1,3 +1,6 @@
+// Uses react-bootstrap components for
+// collapsing the menu on small devices
+
 "use strict";
 
 var React = require('react');

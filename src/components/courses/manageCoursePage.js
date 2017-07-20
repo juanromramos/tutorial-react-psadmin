@@ -89,7 +89,9 @@ class ManageCoursePage extends React.Component {
                 authors={this.state.authors}
                 onChange={this.setCourseState}
                 onSave={this.saveCourse}
-                errors={this.state.errors} />
+                errors={this.state.errors}
+                dirty={this.state.dirty}
+              />
         );
     }
 }

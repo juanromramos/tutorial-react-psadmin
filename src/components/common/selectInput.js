@@ -1,6 +1,7 @@
 "use strict";
 
 var React = require('react');
+var PropTypes = require('prop-types');
 
 class Select extends React.Component {
         renderAuthors() {
@@ -22,10 +23,10 @@ class Select extends React.Component {
                 <div className='field'>
                   <select
                     name={this.props.name}
-                    ref={this.props.name}
                     value={this.props.value}
                     onChange={this.props.onChange}
-                    className="form-control">
+                    className="form-control"
+                    ref={this.props.name} >
                     {this.renderAuthors()}
                   </select>
                   <div className='input'>{this.props.error}</div>
@@ -34,5 +35,13 @@ class Select extends React.Component {
           );
     }
 }
+
+Select.propTypes = {
+    name: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string,
+    error: PropTypes.string
+};
 
 module.exports = Select;

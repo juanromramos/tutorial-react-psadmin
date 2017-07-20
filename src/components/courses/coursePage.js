@@ -2,7 +2,6 @@
 
 var React = require('react');
 var Link = require('react-router-dom').Link;
-// var CourseActions = require('../../actions/courseActions');
 var CourseStore = require('../../stores/courseStore');
 var CourseList = require('./courseList');
 var super_this;

@@ -2,6 +2,7 @@
 
 var React = require('react');
 var Input = require('../common/textInput');
+var Prompt = require('react-router-dom').Prompt;
 var PropTypes = require('prop-types');
 
 class AuthorForm extends React.Component {
@@ -23,6 +24,11 @@ class AuthorForm extends React.Component {
                     error={this.props.errors.lastName} />
 
                 <input type='submit' value='Save' className='btn btn-default' onClick={this.props.onSave} />
+                <Prompt
+                  when={this.props.dirty}
+                  // message={location => (`Are you sure you want to go to ${location.pathname}`)}
+                  message={'Are you sure you want to go to ' + location.pathname + '?'}
+                />
             </form>
         );
     }

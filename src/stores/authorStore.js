@@ -3,7 +3,16 @@
 var Dispatcher = require('../dispatcher/appDispatcher');
 var ActionTypes = require('../constants/actionTypes');
 var EventEmitter = require('events').EventEmitter;
+
+// From npm object-assign webpage:
+//
+// Node.js 4 and up, as well as every evergreen browser
+// (Chrome, Edge, Firefox, Opera, Safari), support Object.assign().
+// If you target only those environments, then by all means, use
+// Object.assign() instead of this package.
+//
 //var assign = require('object-assign');
+
 var _ = require('lodash');
 var CHANGE_EVENT = 'change';
 
