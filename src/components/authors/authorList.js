@@ -12,9 +12,9 @@ class AuthorList extends React.Component {
     }
 
     render() {
-        var createAuthorRow = function(author) {
+        var createAuthorRow = function(author, index) {
             return (
-              <tr key={author.id}>
+              <tr key={index}>
                   <td><button onClick={this.deleteAuthor.bind(this, author.id)} className='btn btn-danger'>Delete</button></td>
                   <td><Link to={'/author/' + author.id}>{author.id}</Link></td>
                   <td>{author.firstName} {author.lastName}</td>

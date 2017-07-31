@@ -11,13 +11,10 @@ class CourseList extends React.Component {
     }
 
     render() {
-        var createCourseRow = function(course) {
-          var id = Math.floor((Math.random() * 100000) + 1);
+        var createCourseRow = function(course, index) {
           return (
-            <tr key={course.id + '-' + id}>
+            <tr key={index}>
                 <td><a target='_blank' href={course.watchHref} className='btn btn-info'>Watch</a></td>
-                {/* v2 */}
-                {/* <td><a href='#' onClick={this.deleteCourse.bind(this, course.id)}>Delete</a></td> */}
                 <td><button onClick={this.deleteCourse.bind(this, course.id)} className='btn btn-danger'>Delete</button></td>
                 <td>{course.title}</td>
                 <td>{course.author.name}</td>

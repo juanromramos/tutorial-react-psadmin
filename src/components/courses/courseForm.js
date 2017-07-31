@@ -3,19 +3,24 @@ import Input from '../common/textInput';
 import Select from '../common/selectInput';
 import { Prompt } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import AuthorStore from '../../stores/authorStore';
 
 class CourseForm extends React.Component {
     constructor(props) {
       super(props);
-      // valor por defecto
-      if (this.props.authors.length > 0) {
-        this.props.course.author = this.props.authors[0].firstName + ' ' + this.props.authors[0].lastName;
+      this.state = {
+        authors: AuthorStore.getAllAuthors()
+      };
+
+      if (this.state.authors.length > 0) {
+        this.props.course.author = this.state.authors[0].firstName + ' ' + this.state.authors[0].lastName;
       } else {
         this.props.course.author = 'No authors';
       }
     }
 
     render() {
+      console.log(this.props.course.author);
       return(
             <form>
                 <h1>Manage Course</h1>
@@ -31,7 +36,7 @@ class CourseForm extends React.Component {
                   label='Author'
                   value={this.props.course.author}
                   onChange={this.props.onChange}
-                  options={this.props.authors}
+                  options={this.state.authors}
                 />
                 <Input
                   name='category'

@@ -2,18 +2,13 @@ import React from 'react';
 import CourseActions from '../../actions/courseActions';
 import CourseForm from './courseForm';
 import CourseStore from '../../stores/courseStore';
-import AuthorStore from '../../stores/authorStore';
 import toastr from 'toastr';
-
-var super_this;
 
 class ManageCoursePage extends React.Component {
       constructor() {
           super();
-          super_this = this;
           this.state = {
             course: { id:'', title:'', watchHref:'',  author:'', length:'', category:'' },
-            authors: AuthorStore.getAllAuthors(),
             errors: { title:'', category:'', length:'', watchHref:'' },
             dirty: false
           };
@@ -26,72 +21,99 @@ class ManageCoursePage extends React.Component {
       }
 
       setCourseState(event) {
-        super_this.setState({dirty: true});
-        const course = Object.assign({}, super_this.state.course);
+        this.setState({dirty: true});
+        const course = Object.assign({}, this.state.course);
         course[event.target.name] = event.target.value;
-        super_this.setState({course});
+        this.setState({course});
       }
 
       courseFormIsValid() {
           var formIsValid = true;
-          // this.setState({ errors: {} });
-          this.state.errors = {};
-          let errors = Object.assign({}, this.state.errors);
+          this.setState((prevState) => ({
+              errors: {
+                title:'',
+                category:'',
+                length:'',
+                watchHref:''
+              }
+          }));
 
           if (this.state.course.title.length < 3) {
-            errors.title = 'Title must be at least 3 characters.';
-            this.setState({errors});
+            this.setState((prevState) => ({
+                errors: {
+                  title: 'Title must be at least 3 characters.',
+                  category: prevState.errors.category,
+                  length: prevState.errors.length,
+                  watchHref: prevState.errors.watchHref
+                }
+            }));
             formIsValid = false;
           }
 
           if (this.state.course.category.length < 3) {
-            errors.category = 'Category must be at least 3 characters.';
-            this.setState({errors});
+            this.setState((prevState) => ({
+                errors: {
+                  title: prevState.errors.title,
+                  category: 'Category must be at least 3 characters.',
+                  length: prevState.errors.length,
+                  watchHref: prevState.errors.watchHref
+                }
+            }));
             formIsValid = false;
           }
 
           if (this.state.course.length.length < 3) {
-            errors.length = 'Length must be in hh:mm:ss format.';
-            this.setState({errors});
+            this.setState((prevState) => ({
+                errors: {
+                  title: prevState.errors.title,
+                  category: prevState.errors.category,
+                  length: 'Length must be in hh:mm:ss format.',
+                  watchHref: prevState.errors.watchHref
+                }
+            }));
             formIsValid = false;
           }
 
           if (this.state.course.watchHref.length < 3) {
-            errors.watchHref = 'URL must be at least 3 characters.';
-            this.setState({errors});
+            this.setState((prevState) => ({
+                errors: {
+                  title: prevState.errors.title,
+                  category: prevState.errors.category,
+                  length: prevState.errors.length,
+                  watchHref: 'URL must be at least 3 characters.'
+                }
+            }));
             formIsValid = false;
           }
-          // this.setState({ errors: this.state.errors });
           return formIsValid;
       }
 
       saveCourse(event) {
           event.preventDefault();
-          if (!super_this.courseFormIsValid()) {
+          if (!this.courseFormIsValid()) {
               return;
           }
 
-          var authorName = super_this.state.course.author;
-          var authorObj = { id: authorName.split(' ')[0].toLowerCase() + '-' + authorName.split(' ')[1].toLowerCase(), name: authorName };
-          super_this.state.course.author = authorObj;
+          // var authorName = this.state.course.author;
+          // var authorObj = { id: authorName.split(' ')[0].toLowerCase() + '-' + authorName.split(' ')[1].toLowerCase(), name: authorName };
+          // this.state.course.author = authorObj;
 
-          if (super_this.state.course.id) {
-              CourseActions.updateCourse(super_this.state.course);
+          if (this.state.course.id) {
+              CourseActions.updateCourse(this.state.course);
           } else {
-              CourseActions.createCourse(super_this.state.course);
+              CourseActions.createCourse(this.state.course);
           }
-          super_this.setState({dirty: false});
+          this.setState({dirty: false});
           toastr.success("Course saved");
-          super_this.props.history.go(-1);
+          this.props.history.go(-1);
       }
 
       render() {
         return(
             <CourseForm
                 course={this.state.course}
-                authors={this.state.authors}
-                onChange={this.setCourseState}
-                onSave={this.saveCourse}
+                onChange={this.setCourseState.bind(this)}
+                onSave={this.saveCourse.bind(this)}
                 errors={this.state.errors}
                 dirty={this.state.dirty}
               />
