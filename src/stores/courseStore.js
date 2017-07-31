@@ -1,11 +1,9 @@
-"use strict";
+import Dispatcher from '../dispatcher/appDispatcher';
+import ActionTypes from '../constants/actionTypes';
+import { EventEmitter } from 'events';
+import * as _ from 'lodash';
 
-var Dispatcher = require('../dispatcher/appDispatcher');
-var ActionTypes = require('../constants/actionTypes');
-var EventEmitter = require('events').EventEmitter;
-var _ = require('lodash');
 var CHANGE_EVENT = 'change';
-
 var _courses = [];  //private var
 
 var CourseStore = Object.assign({}, EventEmitter.prototype, {
@@ -57,4 +55,4 @@ Dispatcher.register(function(action) {
     }
 });
 
-module.exports = CourseStore;
+export default CourseStore;

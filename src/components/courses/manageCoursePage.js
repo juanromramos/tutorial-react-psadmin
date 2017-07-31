@@ -1,12 +1,10 @@
-"use strict";
+import React from 'react';
+import CourseActions from '../../actions/courseActions';
+import CourseForm from './courseForm';
+import CourseStore from '../../stores/courseStore';
+import AuthorStore from '../../stores/authorStore';
+import toastr from 'toastr';
 
-var React = require('react');
-var CourseForm = require('./courseForm');
-var CourseActions = require('../../actions/courseActions');
-var CourseStore = require('../../stores/courseStore');
-var AuthorStore = require('../../stores/authorStore');
-
-var toastr = require('toastr');
 var super_this;
 
 class ManageCoursePage extends React.Component {
@@ -16,7 +14,7 @@ class ManageCoursePage extends React.Component {
           this.state = {
             course: { id:'', title:'', watchHref:'',  author:'', length:'', category:'' },
             authors: AuthorStore.getAllAuthors(),
-            errors: {},
+            errors: { title:'', category:'', length:'', watchHref:'' },
             dirty: false
           };
       }
@@ -36,29 +34,34 @@ class ManageCoursePage extends React.Component {
 
       courseFormIsValid() {
           var formIsValid = true;
-          this.state.errors = {}; // Clear any previous errors.
+          // this.setState({ errors: {} });
+          this.state.errors = {};
+          let errors = Object.assign({}, this.state.errors);
 
           if (this.state.course.title.length < 3) {
-              this.state.errors.title = 'Title must be at least 3 characters.';
-              formIsValid = false;
+            errors.title = 'Title must be at least 3 characters.';
+            this.setState({errors});
+            formIsValid = false;
           }
 
           if (this.state.course.category.length < 3) {
-              this.state.errors.category = 'Category must be at least 3 characters.';
-              formIsValid = false;
+            errors.category = 'Category must be at least 3 characters.';
+            this.setState({errors});
+            formIsValid = false;
           }
 
           if (this.state.course.length.length < 3) {
-              this.state.errors.length = 'Length must be in hh:mm:ss format.';
-              formIsValid = false;
+            errors.length = 'Length must be in hh:mm:ss format.';
+            this.setState({errors});
+            formIsValid = false;
           }
 
           if (this.state.course.watchHref.length < 3) {
-              this.state.errors.watchHref = 'URL must be at least 3 characters.';
-              formIsValid = false;
+            errors.watchHref = 'URL must be at least 3 characters.';
+            this.setState({errors});
+            formIsValid = false;
           }
-
-          this.setState({ errors: this.state.errors });
+          // this.setState({ errors: this.state.errors });
           return formIsValid;
       }
 
@@ -96,4 +99,4 @@ class ManageCoursePage extends React.Component {
     }
 }
 
-module.exports = ManageCoursePage;
+export default ManageCoursePage;

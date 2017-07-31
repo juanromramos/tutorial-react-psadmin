@@ -1,9 +1,7 @@
-"use strict";
-
-var Dispatcher = require('../dispatcher/appDispatcher')
-var AuthorApi = require('../api/authorApi');
-var CourseApi = require('../api/courseApi');
-var ActionTypes = require('../constants/actionTypes');
+import Dispatcher from '../dispatcher/appDispatcher';
+import AuthorApi from '../api/authorApi';
+import CourseApi from '../api/courseApi';
+import ActionTypes from '../constants/actionTypes';
 
 var InitiliazeActions = {
     initApp: function(){
@@ -17,4 +15,4 @@ var InitiliazeActions = {
     }
 };
 
-module.exports = InitiliazeActions;
+export default InitiliazeActions;

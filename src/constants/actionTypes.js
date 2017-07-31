@@ -1,8 +1,6 @@
-"use strict";
+import keyMirror from 'fbjs/lib/keyMirror';
 
-var keyMirror = require('fbjs/lib/keyMirror');
-
-module.exports = keyMirror({
+export default keyMirror({
     INITIALIZE: null,
     CREATE_AUTHOR: null,
     UPDATE_AUTHOR: null,

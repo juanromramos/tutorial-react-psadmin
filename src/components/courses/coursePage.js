@@ -1,9 +1,8 @@
-"use strict";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import CourseStore from '../../stores/courseStore';
+import CourseList from './courseList';
 
-var React = require('react');
-var Link = require('react-router-dom').Link;
-var CourseStore = require('../../stores/courseStore');
-var CourseList = require('./courseList');
 var super_this;
 
 class CoursePage extends React.Component {
@@ -31,12 +30,11 @@ class CoursePage extends React.Component {
         return(
             <div>
                 <h1>Courses</h1>
-                <Link to='/course' className='btn btn-default'>Add Course</Link>
-                <hr />
+                <Link to='/course' className='btn btn-success'>Add Course</Link>
                 <CourseList courses={this.state.courses}/>
             </div>
         );
     }
 }
 
-module.exports = CoursePage;
+export default CoursePage;

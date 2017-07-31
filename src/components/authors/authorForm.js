@@ -1,9 +1,7 @@
-"use strict";
-
-var React = require('react');
-var Input = require('../common/textInput');
-var Prompt = require('react-router-dom').Prompt;
-var PropTypes = require('prop-types');
+import React from 'react';
+import Input from '../common/textInput';
+import { Prompt } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class AuthorForm extends React.Component {
       render() {
@@ -26,8 +24,7 @@ class AuthorForm extends React.Component {
                 <input type='submit' value='Save' className='btn btn-default' onClick={this.props.onSave} />
                 <Prompt
                   when={this.props.dirty}
-                  // message={location => (`Are you sure you want to go to ${location.pathname}`)}
-                  message={'Are you sure you want to go to ' + location.pathname + '?'}
+                  message={location => (`Are you sure you want to go to ${location.pathname} ?`)}
                 />
             </form>
         );
@@ -41,4 +38,4 @@ AuthorForm.propTypes = {
     errors: PropTypes.object
 };
 
-module.exports = AuthorForm;
+export default AuthorForm;

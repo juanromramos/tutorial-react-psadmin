@@ -1,8 +1,6 @@
-"use strict";
-
-var Dispatcher = require('../dispatcher/appDispatcher')
-var CourseApi = require('../api/courseApi');
-var ActionTypes = require('../constants/actionTypes');
+import Dispatcher from '../dispatcher/appDispatcher';
+import CourseApi from '../api/courseApi';
+import ActionTypes from '../constants/actionTypes';
 
 var CourseActions = {
     createCourse: function(course) {
@@ -31,4 +29,4 @@ var CourseActions = {
 
 };
 
-module.exports = CourseActions;
+export default CourseActions;

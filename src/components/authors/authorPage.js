@@ -1,10 +1,7 @@
-"use strict";
-
-var React = require('react');
-var Link = require('react-router-dom').Link;
-//var AuthorApi = require('../../api/authorApi');  //Removed when 'flux' gets into action
-var AuthorStore = require('../../stores/authorStore');
-var AuthorList = require('./authorList');
+import React from 'react';
+import { Link } from 'react-router-dom';
+import AuthorStore from '../../stores/authorStore';
+import AuthorList from './authorList';
 var super_this;
 
 class AuthorPage extends React.Component {
@@ -32,12 +29,11 @@ class AuthorPage extends React.Component {
         return(
             <div>
                 <h1>Authors</h1>
-                <Link to='/author' className='btn btn-default'>Add Author</Link>
-                <hr />
+                <Link to='/author' className='btn btn-success'>Add Author</Link>
                 <AuthorList authors={this.state.authors} />
             </div>
         );
     }
 }
 
-module.exports = AuthorPage;
+export default AuthorPage;

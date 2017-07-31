@@ -1,41 +1,35 @@
-"use strict";
-
-var React = require('react');
-// var Header = require('./common/header'); //Old header with no bootstrap navbar-collapse
-var NewHeader = require('./common/new-header');
-var Route = require('react-router-dom').Route;
-var Switch = require('react-router-dom').Switch;
-var Redirect = require('react-router-dom').Redirect;
+import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import Header from './common/header';
+import Home from './homePage';
+import AuthorPage from './authors/authorPage';
+import ManageAuthorPage from './authors/manageAuthorPage';
+import CoursePage from './courses/coursePage';
+import ManageCoursePage from './courses/manageCoursePage';
+import About from './about/aboutPage';
+import NotFoundPage from './notFoundPage';
 
 class App extends React.Component {
     render() {
-        // // Custom routing code
-        // var Child;
-        // switch(this.props.route) {
-        //     case 'home': Child = Home; break;
-        //     case 'authors': Child = Authors; break;
-        //     case 'about': Child = About; break;
-        //     default: Child = Home;
-        // }
         return (
             <div>
-                <NewHeader />
+                <Header />
                 <div className="container-fluid">
                     <Switch>
-                        <Route exact path='/' component={require('./homePage')} />
+                        <Route exact path='/' component={Home} />
 
-                        <Route path='/authors' component={require('./authors/authorPage')} />
-                        <Route path='/author' component={require('./authors/manageAuthorPage')} />
-                        <Route path='/author/:id' component={require('./authors/manageAuthorPage')} />
+                        <Route path='/authors' component={AuthorPage} />
+                        <Route exact path='/author' component={ManageAuthorPage} />
+                        <Route path='/author/:id' component={ManageAuthorPage} />
 
-                        <Route path='/courses' component={require('./courses/coursePage')} />
-                        <Route path='/course' component={require('./courses/manageCoursePage')} />
-                        <Route path='/course/:id' component={require('./courses/manageCoursePage')} />
+                        <Route path='/courses' component={CoursePage} />
+                        <Route exact path='/course' component={ManageCoursePage} />
+                        <Route path='/course/:id' component={ManageCoursePage} />
 
-                        <Route path='/about' component={require('./about/aboutPage')} />
+                        <Route path='/about' component={About} />
                         <Redirect from='/about-us' to='about' />
 
-                        <Route component={require('./NotFoundPage')} />
+                        <Route component={NotFoundPage} />
                   </Switch>
                 </div>
             </div>
@@ -43,4 +37,4 @@ class App extends React.Component {
     };
 }
 
-module.exports = App;
+export default App;

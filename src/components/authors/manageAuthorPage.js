@@ -1,11 +1,9 @@
-"use strict";
+import React from 'react';
+import AuthorActions from '../../actions/authorActions';
+import AuthorForm from './authorForm';
+import AuthorStore from '../../stores/authorStore';
+import toastr from 'toastr';
 
-var React = require('react');
-var AuthorForm = require('./authorForm');
-var AuthorActions = require('../../actions/authorActions');
-var AuthorStore = require('../../stores/authorStore');
-
-var toastr = require('toastr');
 var super_this;
 
 class ManageAuthorPage extends React.Component {
@@ -14,7 +12,7 @@ class ManageAuthorPage extends React.Component {
           super_this = this;
           this.state = {
             author: { id: '', firstName: '', lastName: '' },
-            errors: {},
+            errors: { firstName: '', lastName: '' },
             dirty: false
           };
       }
@@ -25,12 +23,6 @@ class ManageAuthorPage extends React.Component {
               this.setState({author: AuthorStore.getAuthorById(authorId)});
       }
 
-      componentWillUnmount() {
-          // Prevenir salir de una página con formulario
-          // Se realiza con el componente Prompt de
-          // react-router-dom en el componente Form
-        }
-
       setAuthorState(event) {
           super_this.setState({dirty: true});
           const author = Object.assign({}, super_this.state.author);
@@ -40,19 +32,22 @@ class ManageAuthorPage extends React.Component {
 
       authorFormIsValid() {
           var formIsValid = true;
-          this.state.errors = {}; // Clear any previous errors.
+          // this.setState({ errors: {} });
+          this.state.errors = {};
+          let errors = Object.assign({}, this.state.errors);
 
           if (this.state.author.firstName.length < 3) {
-              this.state.errors.firstName = 'First name must be at least 3 characters.';
-              formIsValid = false;
+            errors.firstName = 'First name must be at least 3 characters.';
+            this.setState({errors});
+            formIsValid = false;
           }
 
           if (this.state.author.lastName.length < 3) {
-              this.state.errors.lastName = 'Last name must be at least 3 characters.';
-              formIsValid = false;
+            errors.lastName = 'Last name must be at least 3 characters.';
+            this.setState({errors});
+            formIsValid = false;
           }
-
-          this.setState({ errors: this.state.errors });
+          //this.setState({ errors: this.state.errors });
           return formIsValid;
       }
 
@@ -68,22 +63,24 @@ class ManageAuthorPage extends React.Component {
           } else {
               AuthorActions.createAuthor(super_this.state.author);
           }
-          super_this.setState({dirty: false});
+          super_this.setState({ dirty: false });
+          super_this.setState({ errors: { firstName: '', lastName: '' } });
+
           toastr.success("Author saved.");
           super_this.props.history.go(-1);
       }
 
       render() {
-        return(
-            <AuthorForm
-                author={this.state.author}
-                onChange={this.setAuthorState}
-                onSave={this.saveAuthor}
-                errors={this.state.errors}
-                dirty={this.state.dirty}
-              />
-        );
+            return(
+                <AuthorForm
+                    author={this.state.author}
+                    onChange={this.setAuthorState}
+                    onSave={this.saveAuthor}
+                    errors={this.state.errors}
+                    dirty={this.state.dirty}
+                  />
+            );
     }
 }
 
-module.exports = ManageAuthorPage;
+export default ManageAuthorPage;

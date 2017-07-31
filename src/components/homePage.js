@@ -1,18 +1,17 @@
-"use strict";
-
-var React = require('react');
-var Link = require('react-router-dom').Link;
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Jumbotron } from 'react-bootstrap';
 
 class Home extends React.Component {
     render() {
         return (
-            <div className="jumbotron">
+          <Jumbotron>
                 <h1>Pluralsight Administration</h1>
                 <p>React, React Router and Flux for ultra-responsive web apps.</p>
                 <Link to="/about" className="btn btn-primary btn-lg">Learn more</Link>
-            </div>
+            </Jumbotron>
         );
     };
 }
 
-module.exports = Home;
+export default Home;

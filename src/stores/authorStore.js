@@ -1,21 +1,9 @@
-"use strict";
+import Dispatcher from '../dispatcher/appDispatcher';
+import ActionTypes from '../constants/actionTypes';
+import { EventEmitter } from 'events';
+import * as _ from 'lodash';
 
-var Dispatcher = require('../dispatcher/appDispatcher');
-var ActionTypes = require('../constants/actionTypes');
-var EventEmitter = require('events').EventEmitter;
-
-// From npm object-assign webpage:
-//
-// Node.js 4 and up, as well as every evergreen browser
-// (Chrome, Edge, Firefox, Opera, Safari), support Object.assign().
-// If you target only those environments, then by all means, use
-// Object.assign() instead of this package.
-//
-//var assign = require('object-assign');
-
-var _ = require('lodash');
 var CHANGE_EVENT = 'change';
-
 var _authors = [];  //private var
 
 var AuthorStore = Object.assign({}, EventEmitter.prototype, {
@@ -67,4 +55,4 @@ Dispatcher.register(function(action) {
     }
 });
 
-module.exports = AuthorStore;
+export default AuthorStore;

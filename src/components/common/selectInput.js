@@ -1,7 +1,5 @@
-"use strict";
-
-var React = require('react');
-var PropTypes = require('prop-types');
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class Select extends React.Component {
         renderAuthors() {
@@ -40,8 +38,10 @@ Select.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object]),
     error: PropTypes.string
 };
 
-module.exports = Select;
+export default Select;

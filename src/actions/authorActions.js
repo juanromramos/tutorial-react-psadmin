@@ -1,8 +1,6 @@
-"use strict";
-
-var Dispatcher = require('../dispatcher/appDispatcher')
-var AuthorApi = require('../api/authorApi');
-var ActionTypes = require('../constants/actionTypes');
+import Dispatcher from '../dispatcher/appDispatcher';
+import AuthorApi from '../api/authorApi';
+import ActionTypes from '../constants/actionTypes';
 
 var AuthorActions = {
     createAuthor: function(author) {
@@ -30,7 +28,6 @@ var AuthorActions = {
             id: id
         });
     }
-
 };
 
-module.exports = AuthorActions;
+export default AuthorActions;

@@ -1,8 +1,6 @@
-"use strict";
-
 //This file is mocking a web API by hitting hard coded data.
-var courses = require('./courseData').courses;
-var _ = require('lodash');
+import courses from './courseData';
+import _ from 'lodash';
 
 //This would be performed on the server in a real app. Just stubbing in.
 var _generateId = function(course) {
@@ -45,4 +43,4 @@ var CourseApi = {
 	}
 };
 
-module.exports = CourseApi;
+export  default CourseApi;

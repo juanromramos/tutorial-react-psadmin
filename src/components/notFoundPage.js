@@ -1,7 +1,5 @@
-"use strict";
-
-var React = require('react');
-var Link = require('react-router-dom').Link;
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 class NotFoundPage extends React.Component {
     render() {
@@ -15,4 +13,4 @@ class NotFoundPage extends React.Component {
     };
 }
 
-module.exports = NotFoundPage;
+export default NotFoundPage;

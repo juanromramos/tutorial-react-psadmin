@@ -1,13 +1,11 @@
-"use strict";
-
-var React = require('react');
-var PropTypes = require('prop-types');
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class Input extends React.Component {
       render() {
         var wrapperClass = 'form-group';
         if (this.props.error && this.props.error.length > 0) {
-            wrapperClass += ' ' + 'has-error';
+            wrapperClass += ' has-error';
         }
         return(
             <div className={wrapperClass}>
@@ -36,4 +34,4 @@ Input.propTypes = {
     error: PropTypes.string
 };
 
-module.exports = Input;
+export default Input;

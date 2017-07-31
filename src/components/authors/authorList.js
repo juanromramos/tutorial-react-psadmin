@@ -1,12 +1,8 @@
-"use strict";
-
-var React = require('react');
-var PropTypes = require('prop-types');
-var Link = require('react-router-dom').Link;
-var AuthorActions = require('../../actions/authorActions');
-var toastr = require('toastr');
-
-//import PropTypes from 'prop-types'; // Salta error en Reactify?
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import AuthorActions from '../../actions/authorActions';
+import toastr from 'toastr';
 
 class AuthorList extends React.Component {
     deleteAuthor(id, event) {
@@ -19,7 +15,7 @@ class AuthorList extends React.Component {
         var createAuthorRow = function(author) {
             return (
               <tr key={author.id}>
-                  <td><a href='#' onClick={this.deleteAuthor.bind(this, author.id)}>Delete</a></td>
+                  <td><button onClick={this.deleteAuthor.bind(this, author.id)} className='btn btn-danger'>Delete</button></td>
                   <td><Link to={'/author/' + author.id}>{author.id}</Link></td>
                   <td>{author.firstName} {author.lastName}</td>
               </tr>
@@ -49,4 +45,4 @@ AuthorList.propTypes = {
   authors: PropTypes.array.isRequired,
 };
 
-module.exports = AuthorList;
+export default AuthorList;

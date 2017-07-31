@@ -1,10 +1,8 @@
-"use strict";
-
-var React = require('react');
-var Input = require('../common/textInput');
-var Prompt = require('react-router-dom').Prompt;
-var Select = require('../common/selectInput');
-var PropTypes = require('prop-types');
+import React from 'react';
+import Input from '../common/textInput';
+import Select from '../common/selectInput';
+import { Prompt } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class CourseForm extends React.Component {
     constructor(props) {
@@ -20,7 +18,7 @@ class CourseForm extends React.Component {
     render() {
       return(
             <form>
-                <h1>Edit Course</h1>
+                <h1>Manage Course</h1>
                 <Input
                   name='title'
                   label='Title'
@@ -58,7 +56,7 @@ class CourseForm extends React.Component {
                 />
                 <Prompt
                   when={this.props.dirty}
-                  message={location => (`Are you sure you want to go to ${location.pathname}`)}
+                  message={location => (`Are you sure you want to go to ${location.pathname} ?`)}
                 />
                 <input type='submit' value='Save' className='btn btn-default' onClick={this.props.onSave} />
             </form>
@@ -73,4 +71,4 @@ CourseForm.propTypes = {
     errors: PropTypes.object
 };
 
-module.exports = CourseForm;
+export default CourseForm;

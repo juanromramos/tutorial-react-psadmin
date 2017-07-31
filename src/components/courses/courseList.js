@@ -1,10 +1,7 @@
-"use strict";
-
-var React = require('react');
-var PropTypes = require('prop-types');
-var Link = require('react-router-dom').Link;
-var CourseActions = require('../../actions/courseActions');
-var toastr = require('toastr');
+import React from 'react';
+import PropTypes from 'prop-types';
+import CourseActions from '../../actions/courseActions';
+import toastr from 'toastr';
 
 class CourseList extends React.Component {
     deleteCourse(id, event) {
@@ -18,8 +15,10 @@ class CourseList extends React.Component {
           var id = Math.floor((Math.random() * 100000) + 1);
           return (
             <tr key={course.id + '-' + id}>
-                <td><a target='_blank' href={course.watchHref}>Watch</a></td>
-                <td><a href='#' onClick={this.deleteCourse.bind(this, course.id)}>Delete</a></td>
+                <td><a target='_blank' href={course.watchHref} className='btn btn-info'>Watch</a></td>
+                {/* v2 */}
+                {/* <td><a href='#' onClick={this.deleteCourse.bind(this, course.id)}>Delete</a></td> */}
+                <td><button onClick={this.deleteCourse.bind(this, course.id)} className='btn btn-danger'>Delete</button></td>
                 <td>{course.title}</td>
                 <td>{course.author.name}</td>
                 <td>{course.category}</td>
@@ -54,4 +53,4 @@ CourseList.propTypes = {
   courses: PropTypes.array.isRequired,
 };
 
-module.exports = CourseList;
+export default CourseList;
