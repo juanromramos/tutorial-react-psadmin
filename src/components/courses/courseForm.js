@@ -13,14 +13,17 @@ class CourseForm extends React.Component {
       };
 
       if (this.state.authors.length > 0) {
-        this.props.course.author = this.state.authors[0].firstName + ' ' + this.state.authors[0].lastName;
+        this.props.course.author.name = this.state.authors[0].firstName + ' ' + this.state.authors[0].lastName;
       } else {
-        this.props.course.author = 'No authors';
+        this.props.course.author.name = 'No authors';
       }
     }
 
     render() {
-      console.log(this.props.course.author);
+      // Update 'author.id' whenever
+      // the form is rendered (in case)
+      // there are only 1 or 0 authors
+      this.props.course.author.id = this.props.course.author.name.split(' ')[0].toLowerCase() + '-' + this.props.course.author.name.split(' ')[1].toLowerCase();
       return(
             <form>
                 <h1>Manage Course</h1>
@@ -34,7 +37,7 @@ class CourseForm extends React.Component {
                 <Select
                   name='author'
                   label='Author'
-                  value={this.props.course.author}
+                  value={this.props.course.author.name}
                   onChange={this.props.onChange}
                   options={this.state.authors}
                 />

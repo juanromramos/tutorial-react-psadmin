@@ -8,7 +8,7 @@ class ManageCoursePage extends React.Component {
       constructor() {
           super();
           this.state = {
-            course: { id:'', title:'', watchHref:'',  author:'', length:'', category:'' },
+            course: { id:'', title:'', watchHref:'',  author: { id: '', name: '' }, length:'', category:'' },
             errors: { title:'', category:'', length:'', watchHref:'' },
             dirty: false
           };
@@ -21,10 +21,15 @@ class ManageCoursePage extends React.Component {
       }
 
       setCourseState(event) {
-        this.setState({dirty: true});
-        const course = Object.assign({}, this.state.course);
-        course[event.target.name] = event.target.value;
-        this.setState({course});
+          this.setState({dirty: true});
+          const course = Object.assign({}, this.state.course);
+          if (event.target.name !== 'author') {
+            course[event.target.name] = event.target.value;
+          } else {
+            course.author.name = event.target.value;
+            course.author.id = course.author.name.split(' ')[0].toLowerCase() + '-' + course.author.name.split(' ')[1].toLowerCase();
+          }
+          this.setState({course});
       }
 
       courseFormIsValid() {
@@ -93,10 +98,6 @@ class ManageCoursePage extends React.Component {
           if (!this.courseFormIsValid()) {
               return;
           }
-
-          // var authorName = this.state.course.author;
-          // var authorObj = { id: authorName.split(' ')[0].toLowerCase() + '-' + authorName.split(' ')[1].toLowerCase(), name: authorName };
-          // this.state.course.author = authorObj;
 
           if (this.state.course.id) {
               CourseActions.updateCourse(this.state.course);
